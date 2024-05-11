@@ -14,13 +14,23 @@ export const Link = objectType({
     t.nonNull.int("id");
     t.nonNull.string("description");
     t.nonNull.string("url");
+    t.dateTime("createdAt");
     t.field("postedBy", {
       type: "User",
       resolve(parent, args, context) {
-        // 2
+        console.log(`parent: ${parent.id}, desc: ${parent.description}`);
         return context.prisma.link
           .findUnique({ where: { id: parent.id } })
           .postedBy();
+      },
+    });
+    t.nonNull.list.nonNull.field("voters", {
+      type: "User",
+      resolve(parent, args, context, info) {
+        // console.log(`parent: ${parent.id}, `)
+        return context.prisma.link
+          .findUnique({ where: { id: parent.id } })
+          .voters();
       },
     });
   },
@@ -86,11 +96,11 @@ export const CreateLinkMutation = extendType({
       resolve(parent, args, context) {
         const { description, url } = args;
         const { userId } = context;
-        console.log("userId: ", userId)
-        console.log(`description: ${description}, url: ${url}`)
+        console.log("userId: ", userId);
+        console.log(`description: ${description}, url: ${url}`);
         if (!userId) {
           // 1
-          console.log("Invalid user!")
+          console.log("Invalid user!");
           throw new Error("Cannot post without logging in.");
         }
 
