@@ -27,7 +27,7 @@ export const AuthMutation = extendType({
         const user = await context.prisma.user.create({
             data: { email, name, password },
         });
-        const token = jwt.sign({ userId: user.id }, APP_SECRET);
+        const token = jwt.sign({ userId: user.id, email: user.email, name: user.name }, APP_SECRET);
 
         return {
             token,
@@ -55,7 +55,7 @@ export const AuthMutation = extendType({
             if (!valid) {
                 throw new Error("Invalid password");
             }
-            const token = jwt.sign({ userId: user.id }, APP_SECRET);
+            const token = jwt.sign({ userId: user.id, email: user.email, name: user.name }, APP_SECRET);
 
             return {
                 token,
