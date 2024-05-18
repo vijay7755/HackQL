@@ -5,7 +5,7 @@ import { schema } from "./schema";
 import { context } from "./context";
 
 console.log("schema")
-// console.log(schema)
+// initaite CICD
 console.log('DATABASE_URL:', process.env.DATABASE_URL);
 
 export const server = new ApolloServer({
