@@ -7,8 +7,10 @@ services:
     image: postgres:13.5    # 1
     restart: always
     environment:            # 2
-      - POSTGRES_USER=vijay
-      - POSTGRES_PASSWORD=srikrishna
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_HOST_AUTH_METHOD=trust
+      - POSTGRES_DB=hackernews-db
     volumes:                # 3
       - postgres:/var/lib/postgresql/data
     ports:

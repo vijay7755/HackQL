@@ -113,7 +113,6 @@ export interface NexusGenFieldTypes {
     post: NexusGenRootTypes['Link']; // Link!
     signup: NexusGenRootTypes['AuthPayload']; // AuthPayload!
     update: NexusGenRootTypes['Link']; // Link!
-    vote: NexusGenRootTypes['Vote'] | null; // Vote
   }
   Query: { // field return type
     feed: NexusGenRootTypes['Feed']; // Feed!
@@ -158,7 +157,6 @@ export interface NexusGenFieldTypeNames {
     post: 'Link'
     signup: 'AuthPayload'
     update: 'Link'
-    vote: 'Vote'
   }
   Query: { // field return type name
     feed: 'Feed'
@@ -201,9 +199,6 @@ export interface NexusGenArgTypes {
       description: string; // String!
       id: number; // Int!
       url: string; // String!
-    }
-    vote: { // args
-      linkId: number; // Int!
     }
   }
   Query: {

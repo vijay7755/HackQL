@@ -1,4 +1,3 @@
-import { User } from "@prisma/client";
 import { objectType, extendType, nonNull, intArg } from "nexus";
 
 export const Vote = objectType({
